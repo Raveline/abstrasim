@@ -1,0 +1,10 @@
+[package]
+name="Abstrasim"
+version="0.0.1"
+authors=["Raveline<eraveline@gmail.com>"]
+
+[dependencies]
+rand = "0.3.0"
+serde = "*"
+serde_json = "*"
+serde_macros = "*"

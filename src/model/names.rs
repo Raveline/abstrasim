@@ -14,5 +14,6 @@ pub struct SectorNames {
 
 #[derive(Serialize, Deserialize)]
 pub struct NameList {
-    pub sectors: BTreeMap<String, SectorNames>
+    pub sectors: BTreeMap<String, SectorNames>,
+    pub names: Vec<String>
 }

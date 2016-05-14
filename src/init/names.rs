@@ -1,6 +1,5 @@
 
 extern crate serde_json;
-use serde_json::Value;
 
 use utils::file::read_file;
 use model::names::NameList;

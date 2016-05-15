@@ -3,7 +3,7 @@
 
 extern crate serde;
 extern crate serde_json;
-use std::collections::BTreeMap;
+extern crate rand;
 
 
 mod model;
@@ -12,4 +12,8 @@ mod init;
 
 fn main() {
     let nl = init::names::load_names();
+    println!("10 random names for english software companies...");
+    for _ in 0..10 {
+        println!("{}", model::names::random_company_name("Software", "english", &nl));
+    }
 }

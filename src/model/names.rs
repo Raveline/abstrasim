@@ -1,8 +1,6 @@
-extern crate rand;
-
-use std::vec;
 use std::collections::BTreeMap;
-use model::names::rand::Rng;
+use rand;
+use rand::Rng;
 
 #[derive(Serialize, Deserialize)]
 pub struct SectorWords {
@@ -25,15 +23,21 @@ fn pick_random(from: &Vec<String>) -> &String {
     rand::thread_rng().choose(from).expect("Tried to pick random from an empty list.")
 }
 
-fn random_simple_name(from: &NameList) -> &String {
-    pick_random(&from.names)
+pub fn random_company_name(sector: &str, language: &str, from: &NameList) -> String {
+    let sector = from.sectors.get(sector).expect("No such sector");
+    let sector_language = sector.words.get(language).expect("No such language");
+    let generics = from.sectors.get("Generic").expect("No such sector");
+    let generics_language = generics.words.get(language).expect("No such language");
+    match rand::thread_rng().gen_range(0, 5) {
+        0 => random_in_two_lists(&from.names, &sector_language.last, " "),
+        1 => random_in_two_lists(&sector_language.first, &from.names, " "), 
+        2 => random_in_two_lists(&from.names, &from.names, "-"),
+        3 => random_in_two_lists(&generics_language.first, &sector_language.last, " "),
+        4 => random_in_two_lists(&sector_language.first, &generics_language.last, " "),
+        _ => panic!("Should not happen !")
+    }
 }
 
-pub fn random_language_generic_first(sector: &str, language: &str, from: &NameList) -> String {
-    let sector_langs = from.sectors.get(sector).expect("No such sector");
-    let lang_last = sector_langs.words.get(language).expect("No such language");
-    let generic_langs = from.sectors.get("generic").expect("No such sector");
-    let lang_fst = generic_langs.words.get(language).expect("No such language");
-    let n = format!("{} {}", pick_random(&lang_fst.first), pick_random(&lang_last.last));
-    n.to_string()
+fn random_in_two_lists(prefixes: &Vec<String>, postfixes: &Vec<String>, middle: &str) -> String {
+    format!("{}{}{}", pick_random(prefixes), middle, pick_random(postfixes))
 }

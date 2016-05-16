@@ -15,6 +15,6 @@ pub fn read_file(filepath: &str) -> String {
     let mut s = String::new();
     match file.read_to_string(&mut s) {
         Err(why) => panic!("Couldn't read {}: {}", display, &why),
-        Ok(file) => s
+        Ok(_) => s
     }
 }

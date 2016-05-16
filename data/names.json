@@ -1,119 +1,260 @@
-{"sectors":
-    {"Generic": {
-        "words": {
-            "french": {"first": ["Société", "Entreprise", "Groupe"],
-                       "last": ["France", "cie", "SA", "SARL", "générale", "de Lyon", "de Paris", "de Lille",
-                                "mondiale", "Europe"]},
-            "german": {"first": ["Welt", "Deutsch", "Berliner", "Frankfurter", "Europeanische"],
-                       "last": ["AG", "GmbH", "Allgemeine", "SE", "Konzern", "KGaA"]},
-            "english": {"first": ["Global", "World", "General", "British", "American", "Universal", "International"],
-                        "last": ["Enterprises", "Inc.", "Corp.", "& co", "Ventures", "Limited", "Ltd.",
-                                 "Corporation", "Group"]}
+{
+    "sectors":
+    [{
+        "name": {"Generic": []},
+        "words": { 
+            "french": {
+                "first": ["Société", "Entreprise", "Groupe"],
+                "last": ["France", "cie", "SA", "SARL", "générale", "de Lyon", "de Paris", "de Lille",
+                    "mondiale", "Europe"]
+            },
+            "german": {
+                "first": ["Welt", "Deutsch", "Berliner", "Frankfurter", "Europeanische"],
+                "last": ["AG", "GmbH", "Allgemeine", "SE", "Konzern", "KGaA", "KG", "Unternehmens"]
+            },
+            "english": {
+                "first": ["Global", "World", "General", "British", "American", "Universal", "International"],
+                "last": ["Enterprises", "Inc.", "Corp.", "& co", "Ventures", "Limited", "Ltd.",
+                    "Corporation", "Group"]
+            }
         }
     },
-     "OilEnergy": {
+    {
+        "name": {"OilEnergy": []},
         "words": {
-            "french": {"first": ["Energie", "Electricité", "Pétro", "Raffineries"],
-                       "last": ["Pétrolière", "Atomique"]},
-            "german": {"first": ["Petro", "Brennstoff"],
-                       "last": ["Erdöl", "Öl", "Petroleum", "Raffinerie", "Elektrizität", "Elektrik", "Energie", "Strom"]},
-            "english": {"first": ["Foraging", "Texan", "Alaska"],
-                        "last": ["Petroleum", "Oil", "Electrics", "Power", "Volt", "Energy"]}
+            "french": {
+                "first": ["Energie", "Electricité", "Pétro", "Raffineries"],
+                "last": ["Pétrolière", "Atomique"]
+            },
+            "german": {
+                "first": ["Petro", "Brennstoff"],
+                "last": ["Erdöl", "Öl", "Petroleum", "Raffinerie", "Elektrizität", "Elektrik", "Energie", "Strom"]
+            },
+            "english": {
+                "first": ["Foraging", "Texan", "Alaska"],
+                "last": ["Petroleum", "Oil", "Electrics", "Power", "Volt", "Energy"]
+            }
         }
-     },
-     "Software": {"words": {
-        "french": {"first": ["Info", "Algorithmes", "Materiel"],
-                   "last": ["logiciels", "tech", "embarqué"]},
-        "german": {"first": ["Info", "Automatisch", "Informatik"],
-                   "last": ["Systemen", "Technologie", "Computer", "Data", "Komponenten", "Technik", "Programm"]},
-        "english": {"first": ["Automatic", "Intelligent", "Technical", "Embedded"],
-                    "last": ["Systems", "Computing", "-.com", "-soft", "software", "networks"]}}},
-     "Mining": {"words": {
-        "french": {"first": ["Extractions", "Fondrières"],
-                   "last": ["Minière", "Minéral", "Metal"]},
-        "german": {"first": ["Földerung", "Gewinnung"],
-                   "last": ["Bergwerk", "Kohle", "Zechen", "Gruben", "Minen", "Grundwerk", "Material"]},
-        "english": {"first": ["Coal", "Diamonds", "Underground", "Titanium", "Mountain"],
-                    "last": ["Mining", "Materials", "Copper", "Platinum", "Gold", "Resources"]}}},
-     "Logistics": {"words": {
-        "french": {"first": ["Ferroviaire", "Air", "Camions", "Transporteurs"],
-                   "last": ["Transports", "Ferroviaire", "Routier"]},
-        "german": {"first": ["Aero", "Luft"],
-                   "last": ["Verkher", "Logistik", "Fracht", "Beförderung", "Zug", "Weg"]},
-        "english": {"first": ["Coast to coast", "Transcontinental", "Road"],
-                    "last": ["Transports", "Logistics", "Airlines", "Trucking", "Transit", "Carrier", "Express", "Way"]}}},
-     "Pharmaceutics": {"words":{
-        "french": {"first": ["Pharmaceutique", "Laboratoires", "Cosmétiques"],
-                   "last": ["Médical", "Santé", "Vitale", "Pharmaceutique"]},
-        "german": {"first": ["Gesundheit", "Bio"],
-                   "last": ["Pharma", "Apothek", "Lab", "Arzneimittel", "Medikal"]},
-        "english": {"first": ["Drugs", "Medical", "Life", "Elders"],
-                    "last": ["Care", "Health", "Laboratories", "Pharma", "Pharmaceuticals", "Science", "Discovery",
-                             "Healthcare"]}}},
-     "Tourism": {"words":{
-        "french": {"first": ["Hôtels"],
-                   "last": ["Voyages"]},
-        "german": {"first": [],
-                   "last": ["Reisen"]},
-        "english": {"first": [],
-                    "last": ["Hotels", "Resorts"]}}},
-     "Luxury": {"words": {
-        "french": {"first": ["Champagnes", "Montres"],
-                   "last": ["Bordelaise", "Prestige"]},
-        "german": {"first": ["Authentik"],
-                   "last": ["Delikatessen", "Meisterkreis", "Ideal"]},
-        "english": {"first": ["Excelsior", "Perfect"],
-                    "last": ["Luxuries", "Perfume", "Textiles", "Watches"]}}},
-     "Automobile": {"words":{
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Food": {"words":{
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Media": {"words": {
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Telecom": {"words":{
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Banking": {"words":{
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Distribution": {"words":{
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}},
-     "Insurance": {"words": {
-        "french": {"first": [],
-                   "last": []},
-        "german": {"first": [],
-                   "last": []},
-        "english": {"first": [],
-                    "last": []}}}
     },
+    {
+        "name": {"Software": []},
+        "words": {
+            "french": {
+                "first": ["Info", "Algorithmes", "Materiel"],
+                "last": ["logiciels", "tech", "embarqué"]
+            },
+            "german": {
+                "first": ["Info", "Automatisch", "Informatik"],
+                "last": ["Systemen", "Technologie", "Computer", "Data", "Komponenten", "Technik", "Programm"]
+             },
+             "english": {
+                 "first": ["Automatic", "Intelligent", "Technical", "Embedded"],
+                 "last": ["Systems", "Computing", "-.com", "-soft", "software", "networks"]
+             }
+        }
+    },
+    {
+        "name": {"Mining": []}, 
+        "words": {
+             "french": {
+                 "first": ["Extractions", "Fondrières"],
+                 "last": ["Minière", "Minéral", "Metal"]
+             },
+             "german": {
+                 "first": ["Földerung", "Gewinnung"],
+                 "last": ["Bergwerk", "Kohle", "Zechen", "Gruben", "Minen", "Grundwerk", "Material"]
+             },
+             "english": {
+                 "first": ["Coal", "Diamonds", "Underground", "Titanium", "Mountain"],
+                 "last": ["Mining", "Materials", "Copper", "Platinum", "Gold", "Resources"]
+             }
+         }
+    },
+    {
+        "name": {"Logistics": []},
+         "words": {
+             "french": {
+                 "first": ["Ferroviaire", "Air", "Camions", "Transporteurs"],
+                 "last": ["Transports", "Ferroviaire", "Routier"]
+             },
+             "german": {
+                 "first": ["Aero", "Luft"],
+                 "last": ["Verkher", "Logistik", "Fracht", "Beförderung", "Zug", "Weg"]
+             },
+             "english": {
+                 "first": ["Coast to coast", "Transcontinental", "Road"],
+                 "last": ["Transports", "Logistics", "Airlines", "Trucking", "Transit", "Carrier", "Express", "Way"]
+             }
+         }
+    },
+    {
+        "name": {"Pharmaceutics": []},
+        "words":{
+            "french": {
+                "first": ["Pharmaceutique", "Laboratoires", "Cosmétiques"],
+                "last": ["Médical", "Santé", "Vitale", "Pharmaceutique"]
+            },
+            "german": {
+                "first": ["Gesundheit", "Bio"],
+                "last": ["Pharma", "Apothek", "Lab", "Arzneimittel", "Medikal"]
+            },
+            "english": {
+                "first": ["Drugs", "Medical", "Life", "Elders"],
+                "last": ["Care", "Health", "Laboratories", "Pharma", "Pharmaceuticals", "Science", "Discovery",
+                    "Healthcare"]
+            }
+        }
+    },
+    {
+        "name": {"Tourism": []},
+        "words":{
+            "french": {
+                "first": ["Hôtels", "Séjours", "Croisières"],
+                "last": ["Voyages"]
+            },
+            "german": {
+                "first": ["Welt", "Euro"],
+                "last": ["Reisen"]
+            },
+            "english": {
+                "first": ["Transamerican", "Comfort"],
+                "last": ["Hotels", "Resorts", "Trips", "Cruises"]
+            }
+        }
+    },
+    {
+        "name": {"Luxury": []},
+        "words": {
+            "french": {
+                "first": ["Champagnes", "Montres"],
+                "last": ["Bordelaise", "Prestige"]
+            },
+            "german": {
+                "first": ["Authentik"],
+                "last": ["Delikatessen", "Meisterkreis", "Ideal"]
+            },
+            "english": {
+                "first": ["Excelsior", "Perfect"],
+                "last": ["Luxuries", "Perfume", "Textiles", "Watches"]
+            }
+        }
+    },
+    {
+        "name": {"Automobile": []},
+        "words":{
+            "french": {
+                 "first": ["Véhicules", "Carosseries", "Chassis", "Moteurs"],
+                 "last": ["Voitures", "Motorisés", "Automobiles", "Pneumatiques"]
+             },
+             "german": {
+                 "first": ["Motorische", "Auto"],
+                 "last": ["Motorwerk", "-wagen"]
+             },
+             "english": {
+                 "first": ["Road"],
+                 "last": ["Motors", "Engines", "Runners", "Wheels"]
+             }
+         }
+    },
+    {
+        "name": {"Food": []},
+        "words":{
+            "french": {
+                "first": ["Minoteries", "Pêcheries", "Alimentation"],
+                "last": ["Agroindustries", "Agricole", "Céréalière"]
+            },
+            "german": {
+                "first": ["Agro"],
+                "last": []
+            },
+            "english": {
+                "first": [],
+                "last": ["Food", "Agricultural", "Wheat", "Cereals"]
+            }
+        }
+    },
+    {
+        "name": {"Media": []},
+         "words": {
+             "french": {
+                 "first": ["Agence", "Radio Télévision"],
+                 "last": ["Presse", "Médias", "Info"]
+             },
+             "german": {
+                 "first": [],
+                 "last": ["Zeitung"]
+             },
+             "english": {
+                 "first": ["News", "Information"],
+                 "last": ["Broadcasting Company", "Network", "Media", "Tribune"]
+             }
+         }
+    },
+    {
+        "name": {"Telecom": []},
+        "words":{
+             "french": {
+                 "first": ["Réseaux"],
+                 "last": ["Mobile", "Internet", "Téléphone", "Télécom"]
+             },
+             "german": {"first": [],
+                 "last": ["Telekom", "Internet", "Online"]
+             },
+             "english": {"first": ["Connecting"],
+                 "last": ["Online", "Network", "Telecommunications"]
+             }
+        }
+    },
+    {
+        "name": {"Banking": []},
+        "words":{
+             "french": {
+                 "first": ["Crédit", "Banque", "Union", "Caisse"],
+                 "last": ["Bancaire", "d'Epargne"]
+             },
+             "german": {
+                 "first": ["Kommerz"],
+                 "last": ["Bank"]
+             },
+             "english": {"first": ["Financial", "Savings"],
+                 "last": ["Banking", "Holdings", "Finances", "Investements"]
+             }
+         }
+    },
+    {
+        "name": {"Distribution": []},
+         "words":{
+             "french": {
+                 "first": ["Supermarchés", "Intermarchés"],
+                 "last": ["Market"]
+             },
+             "german": {
+                 "first": ["Gross-", "Super"],
+                 "last": ["Kauf"]
+             },
+             "english": {
+                 "first": ["Discount", "Mass", "Save", "Price"],
+                 "last": ["Superstore", "Store", "Centers", "Mall", "-mart", "Buy"]
+             }
+         }
+    },
+    {
+        "name": {"Insurance": []},
+        "words": {
+            "french": {
+                "first": ["Mutuelle"],
+                "last": ["Assurances"]
+            },
+            "german": {
+                "first": [],
+                "last": []
+            },
+            "english": {
+                "first": ["Protection"],
+                "last": ["Insurances", "Funds"]
+            }
+        }
+    }],
     "names": ["Alleshouse", "Armen", "Angerman", "Ancalade", "Aspinall", "Alkana", "Alanis",
     "Amyot", "Alegria", "Adloff", "Autry", "Arnn", "Ailey", "Altice",
     "Allgeyer", "Achter", "Acker", "Araujo", "Affeld", "Agerton", "Aiava",

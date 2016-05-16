@@ -1,21 +1,19 @@
 use std::collections::BTreeMap;
 use rand;
 use rand::Rng;
+use model::sectors::Sector;
 
-#[derive(Serialize, Deserialize)]
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SectorWords {
     first: Vec<String>,
     last: Vec<String>
 }
 
-#[derive(Serialize, Deserialize)]
-pub struct SectorNames {
-    words: BTreeMap<String, SectorWords>
-}
+pub type SectorNames = BTreeMap<String, SectorWords>;
 
-#[derive(Serialize, Deserialize)]
 pub struct NameList {
-    pub sectors: BTreeMap<String, SectorNames>,
+    pub sectors: BTreeMap<Sector, SectorNames>,
     pub names: Vec<String>
 }
 
@@ -23,11 +21,11 @@ fn pick_random(from: &Vec<String>) -> &String {
     rand::thread_rng().choose(from).expect("Tried to pick random from an empty list.")
 }
 
-pub fn random_company_name(sector: &str, language: &str, from: &NameList) -> String {
-    let sector = from.sectors.get(sector).expect("No such sector");
-    let sector_language = sector.words.get(language).expect("No such language");
-    let generics = from.sectors.get("Generic").expect("No such sector");
-    let generics_language = generics.words.get(language).expect("No such language");
+pub fn random_company_name(sector: Sector, language: &str, from: &NameList) -> String {
+    let sector_names = from.sectors.get(&sector).expect("No such sector");
+    let sector_language = sector_names.get(language).expect("No such language");
+    let generics = from.sectors.get(&Sector::Generic).expect("No such sector");
+    let generics_language = generics.get(language).expect("No such language");
     match rand::thread_rng().gen_range(0, 5) {
         0 => random_in_two_lists(&from.names, &sector_language.last, " "),
         1 => random_in_two_lists(&sector_language.first, &from.names, " "), 

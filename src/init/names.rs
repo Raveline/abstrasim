@@ -28,6 +28,8 @@ pub fn build_name_list() -> NameList {
 }
 
 fn load_config() -> ConfigFile {
-    let name_json = read_file("data/names.json");
+    let path = concat!(env!("CARGO_MANIFEST_DIR"),
+            "/data/names.json");
+    let name_json = read_file(path);
     serde_json::from_str(&name_json).unwrap()
 }

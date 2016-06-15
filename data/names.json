@@ -168,8 +168,8 @@
                 "last": []
             },
             "english": {
-                "first": [],
-                "last": ["Food", "Agricultural", "Wheat", "Cereals"]
+                "first": ["Agro", "Eat"],
+                "last": ["Food", "Agricultural", "Wheat", "Cereals", "Farms"]
             }
         }
     },
@@ -250,8 +250,8 @@
                 "last": []
             },
             "english": {
-                "first": ["Protection"],
-                "last": ["Insurances", "Funds"]
+                "first": ["United"],
+                "last": ["Insurances", "Funds", "Protection"]
             }
         }
     }],

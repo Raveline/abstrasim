@@ -1,6 +1,6 @@
 use std::fmt;
 
-#[derive(Debug, PartialEq, Eq, Ord, PartialOrd, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Ord, PartialOrd, Serialize, Deserialize, Copy, Clone)]
 #[serde(deny_unknown_fields)]
 pub enum Sector {
     /// Not a real sector, but we'll put names that are not specific in here

@@ -9,25 +9,35 @@ extern crate serde_json;
 mod model;
 mod utils;
 mod init;
+use model::names::NameList;
 use model::sectors::Sector;
 use model::business::Business;
 use model::world::World;
 
 fn main() {
     let world = generate_world();
-    for biz in world.businesses {
-        println!("{:?}", biz);
+    for (sec, biz) in world.sectors {
+        println!("Sector : {}", sec);
+        for business in biz {
+            println!("\t{:?}", business);
+        }
     }
 }
 
-/// Temporary function to test our simulation
 fn generate_world() -> World {
-    let mut w = World { businesses: vec!() };
     let nl = init::names::build_name_list();
-    for _ in 0..10 {
-        let name = model::names::random_company_name(Sector::Software, "english", &nl);
-        let b = Business::new(name, Sector::Software);
-        w.businesses.push(b);
-    }
+    let mut w = World::new();
+    w.sectors.insert(Sector::Software, generate_sector(&nl, Sector::Software));
     w
+}
+
+/// Temporary function to test our simulation
+fn generate_sector(nl: &NameList, sector : Sector) -> Vec<Business> {
+    let mut businesses = vec!();
+    for _ in 0..10 {
+        let name = model::names::random_company_name(sector, "english", &nl);
+        let b = Business::new(name, sector);
+        businesses.push(b);
+    }
+    businesses
 }

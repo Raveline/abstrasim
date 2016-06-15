@@ -27,7 +27,9 @@ fn main() {
 fn generate_world() -> World {
     let nl = init::names::build_name_list();
     let mut w = World::new();
-    w.sectors.insert(Sector::Software, generate_sector(&nl, Sector::Software));
+    for sec in Sector::iterate() {
+        w.sectors.insert(*sec, generate_sector(&nl, *sec));
+    }
     w
 }
 

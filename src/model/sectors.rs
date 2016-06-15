@@ -1,3 +1,4 @@
+use std::slice::Iter;
 use std::fmt;
 
 #[derive(Debug, PartialEq, Eq, Ord, PartialOrd, Serialize, Deserialize, Copy, Clone)]
@@ -19,6 +20,18 @@ pub enum Sector {
     Banking,
     Distribution,
     Insurance
+}
+
+impl Sector {
+    pub fn iterate() -> Iter<'static, Sector> {
+        static SECTORS: [Sector; 14] = [
+            Sector::OilEnergy, Sector::Software, Sector::Mining,
+            Sector::Logistics, Sector::Pharmaceutics, Sector::Tourism,
+            Sector::Luxury, Sector::Automobile, Sector::Food, Sector::Media,
+            Sector::Telecom, Sector::Banking, Sector::Distribution,
+            Sector::Insurance];
+        SECTORS.into_iter()
+    }
 }
 
 impl fmt::Display for Sector {

@@ -1,4 +1,5 @@
 use std::fmt;
+use std::cmp;
 use rand::thread_rng;
 use rand::Rng;
 use model::sectors::Sector;
@@ -6,7 +7,7 @@ use model::sectors::Sector;
 #[derive(Debug)]
 pub struct Business {
     /// Legal name of this business
-    name: String,
+    pub name: String,
     /// 0 to 1 estimate of the quality of management
     leadership: f32,
     /// 0 to 1 estimate of the global size and its markeshare
@@ -32,6 +33,26 @@ pub struct Business {
     /// Beginning values are between 10 million and 10 billion.
     pub shares_outstanding: u32,
     sector: Sector
+}
+
+impl cmp::PartialEq for Business {
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name
+    }
+}
+
+impl cmp::Eq for Business {}
+
+impl cmp::PartialOrd for Business {
+    fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering> {
+        return Some(self.cmp(other));
+    }
+}
+
+impl cmp::Ord for Business {
+    fn cmp(&self, other: &Self) -> cmp::Ordering {
+        self.name.cmp(&other.name)
+    }
 }
 
 impl fmt::Display for Business {

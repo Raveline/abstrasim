@@ -68,8 +68,21 @@ impl Business {
         (self.performance + self.pr + rnd_factor) / 3.0
     }
 
-    pub fn get_current_stock_value(&self) -> f64 {
-        let real = (self.capitalisation as f64 / self.shares_outstanding as f64);
+    pub fn get_current_stock_value(&self) -> f32 {
+        let real = self.capitalisation as f32 / self.shares_outstanding as f32;
         (real * 100.0).round() / 100.0
+    }
+
+    /// New stock value is dependant on :
+    /// - The difference of perception of the performance, compared to the last
+    ///   perception, giving the General tendancy G.
+    /// - The volume of transaction, depending on the outstading shares and
+    ///   the spread of G, called V.
+    /// This gives a new market capitalization E.
+    pub fn compute_capitalisation_change(&self, rnd_factor: f32) -> f32 {
+        let new_perception = self.compute_perception(rnd_factor);
+        let g = new_perception - self.perception;
+        let v = ((1.0 / self.shares_outstanding as f32) * g * 1000.0).abs();
+        self.capitalisation as f32 * g * v
     }
 }

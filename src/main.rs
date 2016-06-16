@@ -17,17 +17,10 @@ use model::world::World;
 fn main() {
     let mut world = generate_world();
     // Tick once
-    world.tick();
-    for (sec, biz) in world.sectors {
-        println!("Sector : {}", sec);
-        for business in biz {
-            println!("\t{} - perf. : {} - perception : {} - current : {}",
-                     business,
-                     business.performance,
-                     business.perception,
-                     business.get_current_stock_value());
-        }
+    {
+        world.tick();
     }
+    utils::file::write_report("/home/raveline/report.csv", &world).unwrap();
 }
 
 fn generate_world() -> World {

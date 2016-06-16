@@ -10,7 +10,7 @@ pub struct Business {
     /// 0 to 1 estimate of the quality of management
     leadership: f32,
     /// 0 to 1 estimate of the global size and its markeshare
-    size: f32,
+    pub size: f32,
     /// 0 to 1 estimate of the amount invested
     investement: f32,
     /// 0 to 1 estimate of the ability to communicate
@@ -24,11 +24,13 @@ pub struct Business {
     /// Outstanding shares times the price, total value of
     /// this business in the stock exchange.
     /// Expressed as an integer, in million.
-    capitalisation: u32,
+    /// Beginning value are between 200 millions and one trillion.
+    pub capitalisation: u32,
     /// Number of shares of the business on the stock exchange.
     /// Divided by the capitalization, it gives the share value.
     /// Express as an integer, in million
-    shares_outstanding: u32,
+    /// Beginning values are between 10 million and 10 billion.
+    pub shares_outstanding: u32,
     sector: Sector
 }
 
@@ -40,7 +42,7 @@ impl fmt::Display for Business {
 
 impl Business {
     pub fn new(name: String, sector: Sector) -> Business {
-        let random_size : f32 = thread_rng().gen_range(0., 1.);
+        let random_size : f32 = thread_rng().gen_range(0.1, 1.);
         let random_cap_factor : u32 = thread_rng().gen_range(2000, 1000000);
         let random_so_factor : u32 = thread_rng().gen_range(100, 10000);
         let capitalisation = random_size as f64 * random_cap_factor as f64;

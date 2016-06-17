@@ -16,11 +16,11 @@ use model::world::World;
 
 fn main() {
     let mut world = generate_world();
-    // Tick once
+    for _ in 0..10
     {
         world.tick();
     }
-    utils::file::write_report("/home/raveline/report.csv", &world).unwrap();
+    utils::file::write_stock("/home/raveline/stocks.csv", &world).unwrap();
 }
 
 fn generate_world() -> World {

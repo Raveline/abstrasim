@@ -22,14 +22,31 @@ pub fn read_file(filepath: &str) -> String {
     }
 }
 
+pub fn write_stock(filepath: &str, world: &World) -> Result<(), Error> {
+    let path = Path::new(filepath);
+    let mut f = File::create(&path).unwrap();
+    try!(f.write(b"Sector;Name\n"));
+    for (sec, biz) in &world.sectors {
+        for business in biz {
+            let begin = format!("{};{};", sec, business.name);
+            let values_as_str : Vec<String>= world.stocks.
+                get_all(&business.name).iter().map(|x| x.to_string()).collect();
+            let end = values_as_str.join(";");
+            let end2 = end + &"\n";
+            let final_line = begin + &end2;
+            try!(f.write(&final_line.into_bytes()));
+        }
+    }
+    try!(f.sync_all());
+    Ok(())
+}
+
 pub fn write_report(filepath: &str, world: &World) -> Result<(), Error>{
     let path = Path::new(filepath);
     let mut f = File::create(&path).unwrap();
     try!(f.write(b"Name;Performance;Perceived;Shares outstanding;Market cap;Current value"));
-    for (sec, biz) in &world.sectors {
-        println!("Reporting on sector {}\n", sec);
+    for (_, biz) in &world.sectors {
         for business in biz {
-            println!("\tReporting on business {}", business);
             let line = format!(
                 "{};{};{};{};{};{}\n", business, business.performance,
                 business.perception, business.shares_outstanding,

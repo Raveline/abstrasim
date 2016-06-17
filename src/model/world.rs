@@ -33,8 +33,8 @@ impl World {
         }
     }
 
-    pub fn get_by_ticker(&self, ticker: Ticker) -> Option<&Business> {
-        match self.stored_tickers.get(&ticker) {
+    pub fn get_by_ticker(&self, ticker: &Ticker) -> Option<&Business> {
+        match self.stored_tickers.get(ticker) {
             Some (idx) => Some(&self.companies[*idx]),
             None => None
         }

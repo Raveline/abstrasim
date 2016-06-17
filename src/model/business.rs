@@ -4,10 +4,13 @@ use rand::thread_rng;
 use rand::Rng;
 use model::sectors::Sector;
 
+pub type Ticker = String;
+
 #[derive(Debug)]
 pub struct Business {
     /// Legal name of this business
     pub name: String,
+    pub ticker: Ticker,
     /// 0 to 1 estimate of the quality of management
     leadership: f32,
     /// 0 to 1 estimate of the global size and its markeshare
@@ -32,7 +35,7 @@ pub struct Business {
     /// Express as an integer, in million
     /// Beginning values are between 10 million and 10 billion.
     pub shares_outstanding: u32,
-    sector: Sector
+    pub sector: Sector
 }
 
 impl cmp::PartialEq for Business {
@@ -68,7 +71,9 @@ impl Business {
         let random_so_factor : u32 = thread_rng().gen_range(100, 10000);
         let capitalisation = random_size as f64 * random_cap_factor as f64;
         let shares_outstanding = random_size as f64 * random_so_factor as f64;
-        Business { name: name,
+        Business { name: name.clone(),
+                   // TODO: implement a real ticker generator
+                   ticker: name.clone(),
                    sector: sector,
                    leadership: thread_rng().gen_range(0., 1.),
                    size: random_size,

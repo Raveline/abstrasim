@@ -5,7 +5,7 @@ use rand::Rng;
 use model;
 use init;
 use model::names::NameList;
-use model::business::Business;
+use model::business::{Business, Ticker};
 use model::sectors::Sector;
 use model::stocks::Stocks;
 use init::names;
@@ -13,49 +13,40 @@ use init::names;
 pub type SectorBusinesses = BTreeMap<Sector, Vec<Business>>;
 
 pub struct World {
-    pub sectors: SectorBusinesses,
+    pub companies: Vec<Business>,
+    stored_tickers: BTreeMap<Ticker, usize>,
     pub stocks: Stocks
 }
 
 impl World {
     pub fn new() -> World {
-        World { sectors: BTreeMap::new(),
+        World { companies: vec!(),
+                stored_tickers: BTreeMap::new(),
                 stocks: Stocks::new() }
     }
 
     pub fn tick(&mut self) {
-        for (_, biz) in self.sectors.iter_mut() {
-            let sectorial_health = 0.5;
+        let sectorial_health = 0.5;
+        for biz in self.companies.iter_mut() {
             let random_factor = thread_rng().gen_range(0., 1.);
-            for b in biz {
-                if b.perception == 0.0 {
-                    b.performance = b.compute_performance(sectorial_health);
-                }
-                b.performance = b.compute_performance(sectorial_health);
-                let change = b.compute_capitalisation_change(random_factor);
-                b.capitalisation = (b.capitalisation as f32 + change) as u32;
-                b.perception = b.compute_perception(random_factor);
-                self.stocks.push(&b.name, b.get_current_stock_value());
-            }
+            biz.performance = biz.compute_performance(sectorial_health);
+            let change = biz.compute_capitalisation_change(random_factor);
+            biz.capitalisation = (biz.capitalisation as f32 + change) as u32;
+            biz.perception = biz.compute_perception(random_factor);
+            self.stocks.push(&biz.name, biz.get_current_stock_value());
         }
     }
 
-    pub fn generate_world() -> World {
-        let nl = init::names::build_name_list();
-        let mut w = World::new();
-        for sec in Sector::iterate() {
-            w.sectors.insert(*sec, World::generate_sector(&nl, *sec));
+    pub fn get_by_ticker(&self, ticker: Ticker) -> Option<&Business> {
+        match self.stored_tickers.get(&ticker) {
+            Some (idx) => Some(&self.companies[*idx]),
+            None => None
         }
-        w
     }
 
-    fn generate_sector(nl: &NameList, sector : Sector) -> Vec<Business> {
-        let mut businesses = vec!();
-        for _ in 0..10 {
-            let name = model::names::random_company_name(sector, "english", &nl);
-            let b = Business::new(name, sector);
-            businesses.push(b);
-        }
-        businesses
+    pub fn add_business(&mut self, business: Business) {
+        self.companies.push(business);
+        let last_index = self.companies.len() - 1;
+        self.stored_tickers.insert(self.companies[last_index].name.to_string(), last_index);
     }
 }

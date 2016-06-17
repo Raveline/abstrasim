@@ -25,11 +25,11 @@ pub fn read_file(filepath: &str) -> String {
 pub fn write_stock(filepath: &str, world: &World) -> Result<(), Error> {
     let path = Path::new(filepath);
     let mut f = File::create(&path).unwrap();
-    try!(f.write(b"Sector;Name\n"));
+    try!(f.write(b"Sector;Name;Ticker\n"));
     for biz in &world.companies {
-        let begin = format!("{};{};", biz.sector, biz.name);
+        let begin = format!("{};{};{};", biz.sector, biz.name, biz.ticker);
         let values_as_str : Vec<String>= world.stocks.
-            get_all(&biz.name).iter().map(|x| x.to_string()).collect();
+            get_all(&biz.ticker).iter().map(|x| x.to_string()).collect();
         let end = values_as_str.join(";");
         let end2 = end + &"\n";
         let final_line = begin + &end2;

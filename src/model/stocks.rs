@@ -1,5 +1,5 @@
 use std::collections::BTreeMap;
-use model::business::Business;
+use model::business::Ticker;
 
 /// Records of all stocks values
 pub struct Stocks {
@@ -11,7 +11,7 @@ impl Stocks {
         Stocks { values: BTreeMap::new() }
     }
 
-    pub fn push(&mut self, ticker: &str, value: f32) {
+    pub fn push(&mut self, ticker: &Ticker, value: f32) {
         if let Some(v) = self.values.get_mut(ticker) {
             v.push(value);
             return
@@ -21,11 +21,11 @@ impl Stocks {
         }
     }
 
-    pub fn get(&self, ticker: &str, tick: usize) -> f32 {
+    pub fn get(&self, ticker: &Ticker, tick: usize) -> f32 {
         self.values.get(ticker).unwrap()[tick]
     }
 
-    pub fn get_all(&self, ticker: &str) -> Vec<f32> {
+    pub fn get_all(&self, ticker: &Ticker) -> Vec<f32> {
         self.values.get(ticker).unwrap().clone()
     }
 }

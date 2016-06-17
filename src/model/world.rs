@@ -29,7 +29,7 @@ impl World {
             let change = biz.compute_capitalisation_change(random_factor);
             biz.capitalisation = (biz.capitalisation as f32 + change) as u32;
             biz.perception = biz.compute_perception(random_factor);
-            self.stocks.push(&biz.name, biz.get_current_stock_value());
+            self.stocks.push(&biz.ticker, biz.get_current_stock_value());
         }
     }
 

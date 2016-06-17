@@ -2,13 +2,9 @@ use std::collections::BTreeMap;
 use rand::thread_rng;
 use rand::Rng;
 
-use model;
-use init;
-use model::names::NameList;
 use model::business::{Business, Ticker};
 use model::sectors::Sector;
 use model::stocks::Stocks;
-use init::names;
 
 pub type SectorBusinesses = BTreeMap<Sector, Vec<Business>>;
 

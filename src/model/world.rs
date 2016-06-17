@@ -12,18 +12,18 @@ use init::names;
 
 pub type SectorBusinesses = BTreeMap<Sector, Vec<Business>>;
 
-pub struct World<'a> {
+pub struct World {
     pub sectors: SectorBusinesses,
-    pub stocks: Stocks<'a>
+    pub stocks: Stocks
 }
 
-impl <'a> World<'a> {
-    pub fn new() -> World<'a> {
+impl World {
+    pub fn new() -> World {
         World { sectors: BTreeMap::new(),
                 stocks: Stocks::new() }
     }
 
-    pub fn tick(&'a mut self) {
+    pub fn tick(&mut self) {
         for (_, biz) in self.sectors.iter_mut() {
             let sectorial_health = 0.5;
             let random_factor = thread_rng().gen_range(0., 1.);
@@ -35,12 +35,12 @@ impl <'a> World<'a> {
                 let change = b.compute_capitalisation_change(random_factor);
                 b.capitalisation = (b.capitalisation as f32 + change) as u32;
                 b.perception = b.compute_perception(random_factor);
-                self.stocks.push(&b, b.get_current_stock_value());
+                self.stocks.push(&b.name, b.get_current_stock_value());
             }
         }
     }
 
-    pub fn generate_world() -> World<'a> {
+    pub fn generate_world() -> World {
         let nl = init::names::build_name_list();
         let mut w = World::new();
         for sec in Sector::iterate() {

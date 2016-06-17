@@ -71,9 +71,8 @@ impl Business {
         let random_so_factor : u32 = thread_rng().gen_range(100, 10000);
         let capitalisation = random_size as f64 * random_cap_factor as f64;
         let shares_outstanding = random_size as f64 * random_so_factor as f64;
-        Business { name: name.clone(),
-                   // TODO: implement a real ticker generator
-                   ticker: name.clone(),
+        Business { name: name,
+                   ticker: "".to_string(),
                    sector: sector,
                    leadership: thread_rng().gen_range(0., 1.),
                    size: random_size,

@@ -40,9 +40,25 @@ impl World {
         }
     }
 
+    fn define_ticker(&self, business: &Business) -> String {
+        let mut cap_only = business.name.chars().filter(|c| c.is_uppercase()).collect();
+        while self.ticker_exists(&cap_only) {
+            let initial = cap_only.chars().nth(0).unwrap();
+            cap_only.insert(0, initial);
+        }
+        cap_only
+    }
+
+    fn ticker_exists(&self, ticker: &Ticker) -> bool {
+        self.companies.iter().find(|&b| b.ticker == *ticker).is_some()
+    }
+
     pub fn add_business(&mut self, business: Business) {
+        let ticker = self.define_ticker(&business);
         self.companies.push(business);
         let last_index = self.companies.len() - 1;
-        self.stored_tickers.insert(self.companies[last_index].name.to_string(), last_index);
+        let mut company = self.companies.get_mut(last_index).unwrap();
+        company.ticker = ticker.clone();
+        self.stored_tickers.insert(ticker, last_index);
     }
 }

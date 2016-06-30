@@ -5,14 +5,20 @@ extern crate rand;
 extern crate serde;
 extern crate serde_json;
 
+#[macro_use] extern crate conrod;
+extern crate piston_window;
+extern crate find_folder;
+
 
 mod model;
 mod utils;
 mod init;
+mod view;
 use model::names::NameList;
 use model::sectors::Sector;
 use model::business::Business;
 use model::world::World;
+use view::base::show_window;
 
 fn main() {
     let mut world = generate_world();
@@ -20,7 +26,8 @@ fn main() {
     {
         world.tick();
     }
-    utils::file::write_stock("/home/raveline/stocks.csv", &world).unwrap();
+    // utils::file::write_stock("/home/raveline/stocks.csv", &world).unwrap();
+    show_window();
 }
 
 fn generate_world() -> World {
